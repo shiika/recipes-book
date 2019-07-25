@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'recipes-book';
+  currentComponent: string = "recipes";
+
+  navigate(event: string) {
+    this.currentComponent = event;
+  }
 }
