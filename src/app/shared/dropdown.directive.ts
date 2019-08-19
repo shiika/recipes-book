@@ -9,7 +9,6 @@ export class DropdownDirective {
   @HostListener('document:click', ['$event']) onClicks() {
     // this.open = !this.open;
     this.open = this.elRef.nativeElement.contains(event.target) ? !this.open : false;
-    console.dir(event);
   }
 
   // ngOnInit() {
