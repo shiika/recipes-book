@@ -1,4 +1,7 @@
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { DataStorageService } from './data-storage.service';
+import { RecipesService } from '../recipes/recipes.service';
+import { Recipe } from '../shared/recipe.model';
 
 @Component({
   selector: 'app-header',
@@ -6,16 +9,18 @@ import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  @Output() onNavigate: EventEmitter<string> = new EventEmitter<string>();
-
-
-  constructor() { }
+  constructor(
+    private dataService: DataStorageService, private rService: RecipesService) { }
 
   ngOnInit() {
   }
 
-  compSelected(comp: string) {
-    this.onNavigate.emit(comp)
+  onSaveData() {
+      this.dataService.saveData();
+  }
+
+  onFetchData() {
+      this.dataService.fetchData().subscribe();
   }
 
 }
