@@ -3,7 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Recipe } from '../shared/recipe.model';
 import { RecipesService } from '../recipes/recipes.service';
 
-import { tap, map } from 'rxjs/operators';
+import { tap, map, take, concatMap } from 'rxjs/operators';
+import { AuthService } from '../auth/auth.service';
 
 @Injectable({
     providedIn: 'root'
@@ -11,7 +12,10 @@ import { tap, map } from 'rxjs/operators';
 
 export class DataStorageService {
 
-    constructor(private http: HttpClient, private rService: RecipesService) {}
+    constructor(
+        private http: HttpClient, 
+        private rService: RecipesService,
+        private authService: AuthService) {}
 
     saveData() {
             const recipes = this.rService.recipesInstance;
@@ -33,23 +37,22 @@ export class DataStorageService {
     }
 
     fetchData() {
-        return this.http.get<Recipe[]>("https://recipe-book-2-712fc.firebaseio.com/recipes.json")
-            .pipe(
-                map(
-                    (recipes: Recipe[]) => {
-                        return recipes.map(
-                            (recipe: Recipe) => {
-                                return {...recipe, ingredients: recipe.ingredients ? recipe.ingredients : []}
-                            }
-                        )
-                    }
-                ),
-                tap(
-               (recipes: Recipe[]) => {
-                    this.rService.setRecipes(recipes)
+        return this.http.get<Recipe[]>(`https://recipe-book-2-712fc.firebaseio.com/recipes.json`).pipe(
+            map(
+                (recipes: Recipe[]) => {
+                    return recipes.map(
+                        (recipe: Recipe) => {
+                            return {...recipe, ingredients: recipe.ingredients ? recipe.ingredients : []}
+                        }
+                    )
+                }
+            ),
+            tap(
+                (recipes: Recipe[]) => {
+                     this.rService.setRecipes(recipes)
                 }
             )
-            )
+        )
         
     }
 

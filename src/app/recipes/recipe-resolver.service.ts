@@ -13,6 +13,7 @@ export class RecipesResolverService implements Resolve<Recipe[]> {
     resolve(
         route: ActivatedRouteSnapshot, 
         state: RouterStateSnapshot): Observable<Recipe[]> | Promise<Recipe[]> | Recipe[] {
+            console.log("resolved!");
             return this.dService.fetchData()
         }
 }

@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { DataStorageService } from './data-storage.service';
 import { RecipesService } from '../recipes/recipes.service';
+import { AuthService } from '../auth/auth.service';
+import { Subscription } from 'rxjs';
+import { User } from '../auth/user.model';
 import { Recipe } from '../shared/recipe.model';
 
 @Component({
@@ -8,19 +11,42 @@ import { Recipe } from '../shared/recipe.model';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
+  isAuthenticated: boolean = false;
+  userSub: Subscription;
+
   constructor(
-    private dataService: DataStorageService, private rService: RecipesService) { }
+    private dataService: DataStorageService, 
+    private rService: RecipesService,
+    private authService: AuthService) { }
 
   ngOnInit() {
+    this.userSub = this.authService.userAuthentication.subscribe(
+      user => {
+        this.isAuthenticated = !!user;
+        console.log(this.isAuthenticated);
+      }
+    );
   }
 
   onSaveData() {
       this.dataService.saveData();
   }
 
+  onLogout() {
+    this.authService.logout();
+  }
+
   onFetchData() {
-      this.dataService.fetchData().subscribe();
+      this.dataService.fetchData().subscribe(
+        (user: Recipe[]) => {
+          console.log(user);
+        }
+      );
+  }
+
+  ngOnDestroy() {
+    this.userSub.unsubscribe();
   }
 
 }
