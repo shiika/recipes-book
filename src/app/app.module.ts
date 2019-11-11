@@ -17,6 +17,8 @@ import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthComponent } from './auth/auth.component';
 import { AuthInterceptorService } from './auth/auth-interceptor.service';
+import { AlertComponent } from './shared/alert/alert.component';
+import { PlaceholderDirective } from './shared/placeholder.directive';
 
 
 
@@ -33,7 +35,9 @@ import { AuthInterceptorService } from './auth/auth-interceptor.service';
     DropdownDirective,
     PlaceholderComponent,
     RecipeEditComponent,
-    AuthComponent
+    AuthComponent,
+    AlertComponent,
+    PlaceholderDirective
   ],
   imports: [
     BrowserModule,
@@ -43,6 +47,9 @@ import { AuthInterceptorService } from './auth/auth-interceptor.service';
     ReactiveFormsModule
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true}],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    AlertComponent
+  ]
 })
 export class AppModule { }

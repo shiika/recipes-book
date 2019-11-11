@@ -14,8 +14,7 @@ export class DataStorageService {
 
     constructor(
         private http: HttpClient, 
-        private rService: RecipesService,
-        private authService: AuthService) {}
+        private rService: RecipesService) {}
 
     saveData() {
             const recipes = this.rService.recipesInstance;

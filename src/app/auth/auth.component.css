@@ -29,3 +29,7 @@
     transform: rotate(1800deg);
   }
 }
+
+input.ng-invalid.ng-touched {
+  border: 1px solid red;
+}

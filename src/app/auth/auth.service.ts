@@ -79,9 +79,12 @@ export class AuthService {
         switch (errorResponse.error.error.message) {
             case 'EMAIL_EXISTS': 
                 errMessage = "This email already exists!";
+            
+            case "INVALID_PASSWORD": 
+                errMessage = "Invalid password was entered!"
         }
 
-        return throwError(errorResponse);
+        return throwError(errMessage);
 
     }
 
