@@ -1,4 +1,4 @@
-import { Component, ViewChild, ComponentFactoryResolver, OnDestroy } from '@angular/core';
+import { Component, ViewChild, ComponentFactoryResolver } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AuthService, ResPayload } from './auth.service';
 import { Observable, Subscription } from 'rxjs';
@@ -12,7 +12,7 @@ import { PlaceholderDirective } from '../shared/placeholder.directive';
     styleUrls: ['./auth.component.css']
 })
 
-export class AuthComponent implements OnDestroy {
+export class AuthComponent {
     constructor(
         private auth: AuthService, 
         private router: Router,
@@ -75,10 +75,6 @@ export class AuthComponent implements OnDestroy {
         )
         
 
-    }
-
-    ngOnDestroy() {
-        this.compSub.unsubscribe();
     }
 
 }
