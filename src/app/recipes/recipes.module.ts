@@ -5,9 +5,10 @@ import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component';
 import { RecipeItemComponent } from './recipe-list/recipe-item/recipe-item.component';
 import { RecipeEditComponent } from './recipe-edit/recipe-edit.component';
 import { RouterModule } from '@angular/router';
-import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RecipesRoutingModule } from './recipes-routing.module';
+import { SharedModule } from '../shared/shared.module';
+import { PlaceholderComponent } from './placeholder/placeholder.component';
 
 @NgModule({
     declarations: [
@@ -15,11 +16,12 @@ import { RecipesRoutingModule } from './recipes-routing.module';
         RecipeListComponent,
         RecipeDetailComponent,
         RecipeItemComponent,
-        RecipeEditComponent
+        RecipeEditComponent,
+        PlaceholderComponent
     ],
 
     imports: [
-        RouterModule, CommonModule, ReactiveFormsModule, RecipesRoutingModule
+        RouterModule, SharedModule, ReactiveFormsModule, RecipesRoutingModule
     ]
 })
 

@@ -1,9 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { DataStorageService } from './data-storage.service';
-import { RecipesService } from '../recipes/recipes.service';
 import { AuthService } from '../auth/auth.service';
 import { Subscription } from 'rxjs';
-import { User } from '../auth/user.model';
 import { Recipe } from '../shared/recipe.model';
 
 @Component({
@@ -16,8 +14,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   userSub: Subscription;
 
   constructor(
-    private dataService: DataStorageService, 
-    private rService: RecipesService,
+    private dataService: DataStorageService,
     private authService: AuthService) { }
 
   ngOnInit() {

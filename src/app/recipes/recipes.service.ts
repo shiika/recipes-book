@@ -1,11 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Recipe } from '../shared/recipe.model';
 import { Subject } from 'rxjs';
-import { DataStorageService } from '../header/data-storage.service';
-
-@Injectable({
-  providedIn: 'root'
-})
 
 // We have provided this service in the root module to be accessible in the shoppinglist component
 // so we can keep our data when we navigate away from this service.

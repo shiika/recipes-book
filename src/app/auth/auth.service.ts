@@ -15,7 +15,7 @@ export interface ResPayload {
 
 }
 
-@Injectable({providedIn: 'root'})
+@Injectable()
 
 export class AuthService {
     constructor(private http: HttpClient, private router: Router) {}

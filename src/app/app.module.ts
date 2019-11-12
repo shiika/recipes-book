@@ -1,19 +1,16 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from "@angular/forms";
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from "./header/header.component";
-import { DropdownDirective } from './shared/dropdown.directive';
 import { AppRoutingModule } from './app-routing.module';
-import { PlaceholderComponent } from './recipes/placeholder/placeholder.component';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { AuthComponent } from './auth/auth.component';
-import { AuthInterceptorService } from './auth/auth-interceptor.service';
+import { HttpClientModule } from '@angular/common/http';
 import { AlertComponent } from './shared/alert/alert.component';
-import { PlaceholderDirective } from './shared/placeholder.directive';
 import { RecipesModule } from './recipes/recipes.module';
 import { ShoppingListModule } from './shopping-list/shopping-list.module';
+import { SharedModule } from './shared/shared.module';
+import { CoreModule } from './core.module';
+import { AuthModule } from './auth/auth.module';
 
 
 
@@ -21,24 +18,17 @@ import { ShoppingListModule } from './shopping-list/shopping-list.module';
   declarations: [
     AppComponent,
     HeaderComponent,
-    DropdownDirective,
-    PlaceholderComponent,
-    AuthComponent,
-    AlertComponent,
-    PlaceholderDirective
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule,
     HttpClientModule,
     RecipesModule,
-    ShoppingListModule
+    ShoppingListModule,
+    SharedModule,
+    CoreModule,
+    AuthModule
   ],
-  providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true}],
-  bootstrap: [AppComponent],
-  entryComponents: [
-    AlertComponent
-  ]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
