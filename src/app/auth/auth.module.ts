@@ -16,17 +16,15 @@ import { RouterModule } from "@angular/router";
   imports: [
     FormsModule,
     CommonModule,
-    RouterModule.forChild([{ path: "auth", component: AuthComponent }])
+    RouterModule.forChild([{ path: "", component: AuthComponent }])
   ],
 
   providers: [
-    AuthGuardService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,
       multi: true
-    },
-    AuthService
+    }
   ],
 
   entryComponents: [AlertComponent]
